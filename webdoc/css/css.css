@@ -1,0 +1,167 @@
+* {
+    box-sizing: border-box;
+}
+@font-face {
+  font-family: myFirstFont;
+  src: url(sansation_light.woff);
+}
+body {
+    margin-left: auto;
+    margin-right: auto;
+}
+.vid{
+	
+}
+
+.preload {
+    width: 100%;
+    height: 100%;
+    background-image: url( "../images/splash/bgrsplash.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    right: 2vw;
+    z-index: 1;
+}
+
+.loader-frame {
+    width: 70px;
+    height: 70px;
+    margin: auto;
+    position: relative;
+}
+
+.loader1,
+.loader2 {
+    position: absolute;
+    border: 5px solid transparent;
+    border-radius: 50%;
+}
+
+.loader1 {
+    width: 70px;
+    height: 70px;
+    border-top: 5px solid white;
+    border-bottom: 5px solid white;
+    animation: clockwisespin 2s linear 3;
+}
+
+.loader2 {
+    width: 60px;
+    height: 60px;
+    border-left: 5px solid #633325;
+    border-right: 5px solid #633325;
+    top: 5px;
+    left: 5px;
+    animation: anticlockwisespin 2s linear 3;
+}
+
+@keyframes clockwisespin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes anticlockwisespin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes fadeout {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+
+
+@media screen and (min-width: 768px) {
+    .preload {
+        width: 100%;
+        height: 100%;
+        background-image: url( "../images/splash/bgrsplash.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: fixed;
+        top: 0;
+        right: 2vw;
+        z-index: 1;
+    }
+
+}
+
+
+
+@media screen and (min-width: 1024px) {
+	body{
+		background-color: black;
+	}
+	.name{
+		color: white;
+		font-size: 8rem;
+		position: absolute;
+		top: 30%;
+		left: 10%;
+		font-family: "bc-alphapipe",sans-serif;
+	}
+    .preload {
+        width: 40%;
+        height: 100%;
+        background-image: url("../images/splash/bgrsplash.jpg");
+        position: absolute;
+        top: 0;
+        left: 60%;
+        z-index: 1;
+    }
+
+    .logo1 {
+        width: 685px;
+        margin: 350px auto 50px 610px;
+    }
+	.loader-frame {
+    width: 70px;
+    height: 70px;
+    margin: auto;
+    position: relative;
+		right: 180%;
+}
+	.loader1,
+.loader2 {
+    position: absolute;
+    border: 5px solid transparent;
+    border-radius: 60%;
+}
+
+.loader1 {
+    width: 900px;
+    height: 900px;
+    border-top: 50px solid rgba(240,160,9,1.00);
+    border-bottom: 50px solid rgba(240,160,9,1.00);
+    animation: clockwisespin 2s linear 3;
+}
+
+.loader2 {
+    width: 900px;
+    height: 900px;
+    border-left: 50px solid white;
+    border-right: 50px solid white;
+    top: 5px;
+    left: 5px;
+    animation: anticlockwisespin 2s linear 3;
+}
+	
+}

@@ -1,0 +1,323 @@
+<!doctype html>
+<head>
+	<title>Filip Dybjerg</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Home,introducing,Virtual,Drag">
+  <meta name="author" content="Webdocumentary">
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Home Screen">
+	<link href="css/home.css" rel="stylesheet" type="text/css">
+	
+</head>
+
+<body>
+
+	<div>
+		<div class="advenced-panorama" id="panorama">
+			<img src="images/home/backgroundBWMAIN.png" class="wide-image" usemap="imagemap" />
+			<div class="modal-button" onclick="showModal('How it all started')">  </div>
+			<div class="modal-button2" onclick="showRadioModal()">  </div>
+			<div class="modal-button3" onclick="showBassModal()">  </div>
+			<div class="modal-button4" onclick="togglePlay()">  </div>
+			<div class="modal-button5" onclick="showLaptopModal()">  </div>
+			<div class="modal-button6" onclick="showDrumsModal()">  </div> 
+
+
+            <audio id="myAudio" volume="0.1" controls autoplay style="display: none;">
+              <source src="Big%20Fine%20Mama_MasterV1.wav">
+              Your browser does not support the audio element.
+            </audio>
+            
+		</div>
+
+	</div>
+	<div class="border-left"></div>
+	<div class="border-right"></div>
+	<div style="width:100%; height:655px">
+
+	</div>
+	<div class="button-container">
+		<div class="button-move" onclick="moveRight()">
+			<div>
+				<<
+			</div> 
+		</div> 
+		<div class="button-stop" onclick="stop()">
+			 <div>==</div> 
+		</div>
+		<div class="button-move" onclick="moveLeft()">
+			<div>
+				>>
+			</div>
+		</div>
+		</div>
+		<div id="modal" class="modal">
+			<div id="modalText"></div> 
+		<video class="pianovid" controls>
+				<source src="video/piano.mp4" type="video/mp4">
+			
+			</video>
+			<button  class="pianoclose" onclick="closeModal()">Close</button>
+		</div>
+
+		<div id="radioModal" class="modal">
+			<div id="radioModalText"></div>
+			<div class="container">  
+  <form id="contact" action="" method="post">
+    <h3>Quick Contact</h3>
+    <h4>Contact me today, and get reply with in 24 hours!</h4>
+    <fieldset>
+      <input placeholder="Your name" type="text" tabindex="1" required autofocus>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Your Email Address" type="email" tabindex="2" required>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Your Phone Number" type="tel" tabindex="3" required>
+    </fieldset>
+ 
+    <fieldset>
+      <textarea placeholder="Type your Message Here...." tabindex="5" required></textarea>
+    </fieldset>
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+    </fieldset>
+  </form>
+ 
+  
+</div>
+			<button class="radioclose" onclick="closeRadioModal()">Close</button>
+		</div>
+		
+		<div id="bassModal" class="modal">
+			<div id="bassModalText">My playlist</div>
+			<video id="videoarea" controls="controls" a>
+			<source src="video/bass.mp4" type="video/mp4">
+			</video>
+
+<ul id="playlist">
+    <li movieurl="#" moviesposter="#">Happy Fit</li>
+    <li movieurl="#">Sintel</li>          
+    <li movieurl="#">Resident Evil</li>      
+    <li movieurl="#">Big Buck Bunny</li>
+</ul>
+			<button class="bassclose" onclick="closeBassModal()">Close</button>
+		</div>
+		
+		<div id="speakerModal" class="modal">
+			<div id="speakerModalText">MY TEXT</div>
+			<button onclick="closeSpeakerModal()">Close</button>
+		</div>
+		
+		<div id="laptopModal" class="modal">
+			<div id="laptopModalText">MY TEXT</div>
+			<button onclick="closeLaptopModal()">Close</button>
+		</div>
+		
+		<div id="laptopModal" class="modal">
+			<div id="laptopModalText">MY TEXT</div>
+			<button onclick="closeLaptopModal()">Close</button>
+		</div>
+		
+		<div id="drumsModal" class="modal">
+			<div id="drumsModalText">MY TEXT</div>
+			<button onclick="closeDrumsModal()">Close</button>
+		</div>
+
+</body>
+<script type="text/javascript">
+
+
+	
+	
+		let newImage = null;
+		let newModal = null;
+		let radioModal = null;
+        let bassModal = null;
+        let speakerModal = null;
+        let laptopModal = null;
+        let drumsModal = null;
+		class image {
+			maxLeft;
+			maxRight;
+			leftInterval;
+			rightInterval;
+			model;
+			position;
+			constructor(maxLeft, maxRight, model, styleLeft) {
+				this.maxLeft = maxLeft
+				this.maxRight = maxRight
+				this.leftInterval = null
+				this.rightInterval = null
+				this.model = model
+				model.style.left = styleLeft;
+				this.position = parseInt(this.model.style.left);
+			}
+
+			moveRight = () => {
+				if (this.leftInterval === null) {
+					this.rightInterval !== null ? this.clearCustomRightInterval() : this.rightInterval = null;
+					this.leftInterval = setInterval(() => {
+						if (parseInt(this.model.style.left) < this.maxLeft) {
+							this.model.style.left = this.position.toString() + 'px'; this.position += 5
+						} else {
+							this.clearCustomLeftInterval(this.leftInterval)
+						}
+					}, 20);
+				} else {
+					this.clearCustomLeftInterval(this.leftInterval)
+				}
+			}
+
+			moveLeft = () => {
+
+				this.leftInterval !== null ? this.clearCustomLeftInterval() : this.leftInterval = null;
+				if (this.rightInterval === null) {
+					this.rightInterval = setInterval(() => {
+						if (parseInt(this.model.style.left) > this.maxRight) {
+							this.model.style.left = this.position.toString() + 'px'; this.position -= 5
+						} else {
+							this.clearCustomRightInterval();
+						}
+					}, 20);
+				} else {
+					this.clearCustomRightInterval();
+				}
+			}
+
+			clearCustomLeftInterval() {
+				if (this.leftInterval !== null) {
+					clearInterval(this.leftInterval);
+					this.leftInterval = null;
+				}
+			}
+
+			clearCustomRightInterval() {
+				if (this.rightInterval !== null) {
+					clearInterval(this.rightInterval);
+					this.rightInterval = null;
+				}
+			}
+
+			stop = () => {
+				this.clearCustomRightInterval();
+				this.clearCustomLeftInterval();
+			}
+		}
+
+		class modal {
+			model;
+			modelText;
+			modelImage;
+			constructor(model, modelTextDiv, modelImage) {
+				this.model = model;
+				this.modelText = modelTextDiv;
+				this.modelImage = modelImage;
+			}
+
+			show() {
+				this.model.style.display = 'block';
+			}
+
+			close() {
+				this.model.style.display = 'none';
+			}
+
+			changeText(text) {
+				this.modelText.innerHTML = text;
+			}
+
+			changeImage(imageSrc) {
+				this.modelImage.src = imageSrc
+			}
+		}
+
+		window.addEventListener("load", () => {
+			newImage = new image(0, -620, document.getElementById('panorama'), '-450px');      
+			newModal = new modal(document.getElementById('modal'), document.getElementById('modalText'), document.getElementById('modalImage'));
+            
+			radioModal = new modal(document.getElementById('radioModal'), document.getElementById('radioModalText'),document.getElementById('radioModalImage') );
+            
+            bassModal = new modal(document.getElementById('bassModal'), document.getElementById('bassModalText'),document.getElementById('bassModalImage') );
+            
+            speakerModal = new modal(document.getElementById('speakerModal'), document.getElementById('speakerModalText'),document.getElementById('speakerModalImage') );
+            
+            laptopModal = new modal(document.getElementById('laptopModal'), document.getElementById('laptopModalText'),document.getElementById('laptopModalImage') );
+            
+            drumsModal = new modal(document.getElementById('drumsModal'), document.getElementById('drumsModalText'),document.getElementById('drumsModalImage') );
+		});
+
+		function moveLeft() {
+			newImage.moveLeft();
+		}
+
+		function moveRight() {
+			newImage.moveRight();
+		}
+
+		function showRadioModal() {
+			radioModal.show();
+		}
+    
+        function showBassModal() {
+			bassModal.show();
+		}
+
+        function showSpeakerModal() {
+			x.play();
+		}
+        
+        function showLaptopModal() {
+			laptopModal.show();
+		}
+    
+        function showDrumsModal() {
+			drumsModal.show();
+		}
+
+		function stop() {
+			newImage.stop();
+		}
+
+		function showModal(text, imageSrc) {
+			newModal.show();
+			newModal.changeText(text);
+			newModal.changeImage(imageSrc);
+		}
+
+
+		function closeModal() {
+			newModal.close();
+		}
+    
+        
+        
+        function closeBassModal() {
+                bassModal.close();
+        }
+    
+        function closeRadioModal() {
+                    radioModal.close();
+        }
+    
+        function closeSpeakerModal() {
+                    speakerModal.close();
+        }
+    
+        function closeLaptopModal() {
+                    laptopModal.close();
+        }
+
+        function closeDrumsModal() {
+                    drumsModal.close();
+        }
+    
+    
+               var myAudio = document.getElementById("myAudio");
+                myAudio.volume= 0.2;
+        function togglePlay() {
+          return myAudio.paused ? myAudio.play() : myAudio.pause();
+        };
+    
+         
+	</script>
